@@ -16,13 +16,13 @@ public class Main {
         if (range1.isInside(point)) {
             System.out.println("Число: " + point + " внутри диапазона №1 от " + range1.getFrom() + " до " + range1.getTo());
         } else {
-            System.out.println("Число: " + point + " не входит в диапазон от " + range1.getFrom() + " до " + range1.getTo());
+            System.out.println("Число: " + point + " не входит в диапазон №1 от " + range1.getFrom() + " до " + range1.getTo());
         }
 
-        if (range1.isInside(point)) {
-            System.out.println("Число: " + point + " внутри диапазона №1 от " + range1.getFrom() + " до " + range1.getTo());
+        if (range2.isInside(point)) {
+            System.out.println("Число: " + point + " внутри диапазона №2 от " + range2.getFrom() + " до " + range2.getTo());
         } else {
-            System.out.println("Число: " + point + " не входит в диапазон от " + range1.getFrom() + " до " + range1.getTo());
+            System.out.println("Число: " + point + " не входит в диапазон №2 от " + range2.getFrom() + " до " + range2.getTo());
         }
     }
 }
