@@ -33,18 +33,21 @@ public class Range {
         return number <= to && number >= from;
     }
 
-    public void setIntersection(double from1, double from2, double to1, double to2) {
-        double fromNew = Math.max(from1, from2);
-        double toNew = Math.min(to1, to2);
-
-        if (toNew - fromNew > 0) {
-            this.to = toNew;
-            this.from = fromNew;
-        }
-
+    public double getToMin(Range range) {
+        return Math.min(this.to, range.getTo());
     }
 
+    public double getFromMax(Range range) {
+        return Math.max(this.from, range.getFrom());
+    }
 
+    public Range getIntersection(Range range) {
+        double length = getToMin(range) - getFromMax(range);
 
+        if (length > 0) {
+            return new Range(getFromMax(range),getToMin(range));
+        }
 
+        return null;
+    }
 }
