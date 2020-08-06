@@ -4,7 +4,7 @@ import ru.academit.dolozov.range.Range;
 
 public class Main {
     public static void main(String[] args) {
-        Range range1 = new Range(10, 30);
+        Range range1 = new Range(10, 60);
         Range range2 = new Range(45, 120);
 
         double length1 = range1.getLength();
@@ -29,10 +29,9 @@ public class Main {
 
         Range rangeIntersection = range1.getIntersection(range2);
 
-        if (rangeIntersection!= null){
-            System.out.println("Диапазон пересечения от: " +rangeIntersection.getFrom()+ " до " +rangeIntersection.getTo()+ " , длиной: " +rangeIntersection.getLength());
-        }
-       else {
+        if (rangeIntersection != null) {
+            System.out.println("Диапазон пересечения от: " + rangeIntersection.getFrom() + " до " + rangeIntersection.getTo() + " , длиной: " + rangeIntersection.getLength());
+        } else {
             System.out.println("Пересечения диапазонов нет");
         }
     }

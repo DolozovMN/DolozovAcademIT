@@ -42,10 +42,9 @@ public class Range {
     }
 
     public Range getIntersection(Range range) {
-        double length = getToMin(range) - getFromMax(range);
 
-        if (length > 0) {
-            return new Range(getFromMax(range),getToMin(range));
+        if (getToMin(range) - getFromMax(range) > 0) {
+            return new Range(getFromMax(range), getToMin(range));
         }
 
         return null;
