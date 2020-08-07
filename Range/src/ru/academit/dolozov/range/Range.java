@@ -33,12 +33,20 @@ public class Range {
         return number <= to && number >= from;
     }
 
-    public double getToMin(Range range) {
-        return Math.min(this.to, range.getTo());
+    public double getFromMin(Range range) {
+        return Math.min(this.from, range.getFrom());
     }
 
     public double getFromMax(Range range) {
         return Math.max(this.from, range.getFrom());
+    }
+
+    public double getToMin(Range range) {
+        return Math.min(this.to, range.getTo());
+    }
+
+    public double getToMax(Range range) {
+        return Math.max(this.to, range.getTo());
     }
 
     public Range getIntersection(Range range) {
@@ -48,5 +56,28 @@ public class Range {
         }
 
         return null;
+    }
+
+    public Range[] getUnion(Range range) {
+
+        if (getToMin(range) < getFromMax(range)) {
+            return new Range[]{new Range(getFromMin(range), getToMin(range)), new Range(getFromMax(range), getToMax(range))};
+        }
+
+        return new Range[]{new Range(getFromMin(range), getToMax(range))};
+    }
+
+    public Range[] getDifference(Range range) {
+
+        if (getFromMin(range) == getFromMax(range) && getToMin(range) == getToMax(range)) {
+            return null;
+        } else if (getToMin(range) < getFromMax(range)) {
+            return null;
+        } else if (getFromMin(range) == getFromMax(range)) {
+            return new Range[]{new Range(getToMin(range), getToMax(range))};
+        } else if (getToMin(range) == getToMax(range)) {
+            return new Range[]{new Range(getFromMin(range), getFromMax(range))};
+        }
+        return new Range[]{new Range(getFromMin(range), getFromMax(range)), new Range(getToMin(range), getToMax(range))};
     }
 }
