@@ -33,51 +33,62 @@ public class Range {
         return number <= to && number >= from;
     }
 
-    public double getFromMin(Range range) {
-        return Math.min(this.from, range.getFrom());
-    }
+    public int compareRanges(Range range) {
+        if (this.from == range.from && this.to == range.to) {
+            return 0;
+        } else if (this.from == range.from) {
+            return 1;
+        } else if (this.to == range.to) {
+            return 2;
+        } else if (this.to == range.from || this.from == range.to) {
+            return 3;
+        } else if (Math.min(this.to, range.to) > Math.max(this.from, range.from)) {
+            return 4;
+        }
 
-    public double getFromMax(Range range) {
-        return Math.max(this.from, range.getFrom());
-    }
-
-    public double getToMin(Range range) {
-        return Math.min(this.to, range.getTo());
-    }
-
-    public double getToMax(Range range) {
-        return Math.max(this.to, range.getTo());
+        return -1;
     }
 
     public Range getIntersection(Range range) {
+        int index = compareRanges(range);
 
-        if (getToMin(range) - getFromMax(range) > 0) {
-            return new Range(getFromMax(range), getToMin(range));
+        if (index == 0) {
+            return new Range(this.from, this.to);
+        } else if (index == 1 || index == 2 || index == 4) {
+            return new Range(Math.max(this.from, range.from), Math.min(this.to, range.to));
         }
 
         return null;
     }
 
     public Range[] getUnion(Range range) {
+        int index = compareRanges(range);
 
-        if (getToMin(range) < getFromMax(range)) {
-            return new Range[]{new Range(getFromMin(range), getToMin(range)), new Range(getFromMax(range), getToMax(range))};
+        if (index == -1) {
+            return new Range[]{new Range(Math.min(this.from, range.from), Math.min(this.to, range.to)),
+                    new Range(Math.max(this.from, range.from), Math.max(this.to, range.to))};
         }
 
-        return new Range[]{new Range(getFromMin(range), getToMax(range))};
+        return new Range[]{new Range(Math.min(this.from, range.from), Math.max(this.to, range.to))};
     }
 
     public Range[] getDifference(Range range) {
+        int index = compareRanges(range);
 
-        if (getFromMin(range) == getFromMax(range) && getToMin(range) == getToMax(range)) {
-            return null;
-        } else if (getToMin(range) < getFromMax(range)) {
-            return null;
-        } else if (getFromMin(range) == getFromMax(range)) {
-            return new Range[]{new Range(getToMin(range), getToMax(range))};
-        } else if (getToMin(range) == getToMax(range)) {
-            return new Range[]{new Range(getFromMin(range), getFromMax(range))};
+        if (index == 1) {
+            return new Range[]{new Range((Math.min(this.to, range.to)), Math.max(this.to, range.to))};
+        } else if (index == 2) {
+            return new Range[]{new Range((Math.min(this.from, range.from)), Math.max(this.from, range.from))};
+        } else if (index == 4) {
+            return new Range[]{new Range((Math.min(this.from, range.from)), Math.max(this.from, range.from)),
+                    new Range((Math.min(this.to, range.to)), Math.max(this.to, range.to))};
         }
-        return new Range[]{new Range(getFromMin(range), getFromMax(range)), new Range(getToMin(range), getToMax(range))};
+
+        return new Range[]{};
+    }
+
+    @Override
+    public String toString() {
+        return "от " + this.from + " до " + this.to;
     }
 }
