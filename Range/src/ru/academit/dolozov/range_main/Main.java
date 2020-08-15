@@ -4,8 +4,8 @@ import ru.academit.dolozov.range.Range;
 
 public class Main {
     public static void main(String[] args) {
-        Range range1 = new Range(20, 30);
-        Range range2 = new Range(30, 40);
+        Range range1 = new Range(0, 40);
+        Range range2 = new Range(50, 70);
 
         double length1 = range1.getLength();
         double length2 = range2.getLength();
