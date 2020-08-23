@@ -33,28 +33,8 @@ public class Range {
         return number <= to && number >= from;
     }
 
-    public int compareRanges(Range range) {
-        if (this.from == range.from && this.to == range.to) {
-            return 0;
-        } else if (this.from == range.from) {
-            return 1;
-        } else if (this.to == range.to) {
-            return 2;
-        } else if (this.to == range.from || this.from == range.to) {
-            return 3;
-        } else if (Math.min(this.to, range.to) > Math.max(this.from, range.from)) {
-            return 4;
-        }
-
-        return -1;
-    }
-
     public Range getIntersection(Range range) {
-        int index = compareRanges(range);
-
-        if (index == 0) {
-            return new Range(this.from, this.to);
-        } else if (index == 1 || index == 2 || index == 4) {
+        if (Math.min(this.to, range.to) > Math.max(this.from, range.from)) {
             return new Range(Math.max(this.from, range.from), Math.min(this.to, range.to));
         }
 
@@ -62,33 +42,33 @@ public class Range {
     }
 
     public Range[] getUnion(Range range) {
-        int index = compareRanges(range);
-
-        if (index == -1) {
-            return new Range[]{new Range(Math.min(this.from, range.from), Math.min(this.to, range.to)),
-                    new Range(Math.max(this.from, range.from), Math.max(this.to, range.to))};
+        if (Math.min(to, range.to) >= Math.max(from, range.from)) {
+            return new Range[]{new Range(Math.min(from, range.from), Math.max(to, range.to))};
         }
 
-        return new Range[]{new Range(Math.min(this.from, range.from), Math.max(this.to, range.to))};
+        return new Range[]{new Range(Math.min(from, range.from), Math.min(to, range.to)),
+                new Range(Math.max(from, range.from), Math.max(to, range.to))};
     }
 
     public Range[] getDifference(Range range) {
-        int index = compareRanges(range);
-
-        if (index == 1) {
-            return new Range[]{new Range((Math.min(this.to, range.to)), Math.max(this.to, range.to))};
-        } else if (index == 2) {
-            return new Range[]{new Range((Math.min(this.from, range.from)), Math.max(this.from, range.from))};
-        } else if (index == 4) {
-            return new Range[]{new Range((Math.min(this.from, range.from)), Math.max(this.from, range.from)),
-                    new Range((Math.min(this.to, range.to)), Math.max(this.to, range.to))};
+        if (from < range.from && to > range.to) {
+            return new Range[]{new Range(from, range.from), new Range(range.to, to)};
+        }
+        if (from >= range.from && to <= range.to) {
+            return new Range[]{};
+        }
+        if (from < range.to && from >= range.from) {
+            return new Range[]{new Range(range.to, to)};
+        }
+        if (to > range.from && to <= range.to) {
+            return new Range[]{new Range(from, range.from)};
         }
 
-        return new Range[]{};
+        return new Range[]{new Range(from, to)};
     }
 
     @Override
     public String toString() {
-        return "от " + this.from + " до " + this.to;
+        return "от " + from + " до " + to;
     }
 }

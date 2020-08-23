@@ -4,8 +4,8 @@ import ru.academit.dolozov.range.Range;
 
 public class Main {
     public static void main(String[] args) {
-        Range range1 = new Range(0, 40);
-        Range range2 = new Range(50, 70);
+        Range range1 = new Range(20, 40);
+        Range range2 = new Range(30, 50);
 
         double length1 = range1.getLength();
         double length2 = range2.getLength();
@@ -44,15 +44,15 @@ public class Main {
         if (rangeUnion.length == 2) {
             System.out.println("Объедененый диапазон состоит из двух: ");
             System.out.println("1-ый: " + rangeUnion[0].toString());
-            System.out.println("2-ой - от: " + rangeUnion[1].toString());
+            System.out.println("2-ой: " + rangeUnion[1].toString());
             System.out.println("Сумарная длина объедениненого диапазона: " + (rangeUnion[0].getLength() + rangeUnion[1].getLength()));
         } else {
-            System.out.println("Объедененый диапазон от: " + rangeUnion[0].toString() + " длиной " + rangeUnion[0].getLength());
+            System.out.println("Объедененый диапазон: " + rangeUnion[0].toString() + " длиной " + rangeUnion[0].getLength());
         }
 
         System.out.println();
 
-        Range[] rangeDifference = range2.getDifference(range1);
+        Range[] rangeDifference = range1.getDifference(range2);
 
         if (rangeDifference.length == 0) {
             System.out.println("Диапазон разности отсутсвует ");
@@ -62,7 +62,7 @@ public class Main {
             System.out.println("2-ой: " + rangeDifference[1].toString());
             System.out.println("Сумарная длина диапазона разности: " + (rangeDifference[0].getLength() + rangeDifference[1].getLength()));
         } else {
-            System.out.println("Диапазон разности от:" + rangeDifference[0].toString() + " длиной " + rangeDifference[0].getLength());
+            System.out.println("Диапазон разности: " + rangeDifference[0].toString() + " длиной " + rangeDifference[0].getLength());
         }
     }
 }
