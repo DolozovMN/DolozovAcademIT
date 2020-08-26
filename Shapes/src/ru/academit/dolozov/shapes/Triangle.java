@@ -29,7 +29,7 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        return getHeight() * getWidth();
+        return 0.5 * getHeight() * getWidth();
     }
 
 
@@ -41,6 +41,20 @@ public class Triangle implements Shape {
 
     @Override
     public String toString() {
-        return "высота: " + getHeight() + "ширина: " + getWidth();
+        return "Триугольник высотой: " + getHeight() + " шириной: " + getWidth();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Triangle triangle = (Triangle) o;
+        return x1 == triangle.x1 && y1 == triangle.y1 && x2 == triangle.x2 && y2 == triangle.y2 && x3 == triangle.x3 && y3 == triangle.y3;
     }
 }

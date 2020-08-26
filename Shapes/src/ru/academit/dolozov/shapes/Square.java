@@ -29,6 +29,20 @@ public class Square implements Shape {
 
     @Override
     public String toString() {
-        return "высота: " + sizeLength + "ширина: " + sizeLength;
+        return "Квадрат, высотой: " + sizeLength + " шириной: " + sizeLength;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Square square = (Square) o;
+        return sizeLength == square.sizeLength;
     }
 }

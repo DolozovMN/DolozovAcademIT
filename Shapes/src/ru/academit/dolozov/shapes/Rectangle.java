@@ -31,6 +31,20 @@ public class Rectangle implements Shape {
 
     @Override
     public String toString() {
-        return "высота: " + rectangleHeight + "ширина: " + rectangleWidth;
+        return "Прямоугольник высотой: " + rectangleHeight + " шириной: " + rectangleWidth;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Rectangle rectangle = (Rectangle) o;
+        return rectangleHeight == rectangle.rectangleHeight && rectangleWidth == rectangle.rectangleWidth;
     }
 }
