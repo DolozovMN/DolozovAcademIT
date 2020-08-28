@@ -34,32 +34,43 @@ public class Range {
     }
 
     public Range getIntersection(Range range) {
-        if (Math.min(this.to, range.to) > Math.max(this.from, range.from)) {
-            return new Range(Math.max(this.from, range.from), Math.min(this.to, range.to));
+        double MaxFrom = Math.max(from, range.from);
+        double MinTo = Math.min(to, range.to);
+
+        if (MinTo > MaxFrom) {
+            return new Range(MaxFrom, MinTo);
         }
 
         return null;
     }
 
     public Range[] getUnion(Range range) {
-        if (Math.min(to, range.to) >= Math.max(from, range.from)) {
-            return new Range[]{new Range(Math.min(from, range.from), Math.max(to, range.to))};
+        double MinFrom = Math.min(from, range.from);
+        double MaxFrom = Math.max(from, range.from);
+        double MinTo = Math.min(to, range.to);
+        double MaxTo = Math.max(to, range.to);
+
+        if (MinTo >= MaxFrom) {
+            return new Range[]{new Range(MinFrom, MaxTo)};
         }
 
-        return new Range[]{new Range(Math.min(from, range.from), Math.min(to, range.to)),
-                new Range(Math.max(from, range.from), Math.max(to, range.to))};
+        return new Range[]{new Range(MinFrom, MinTo),
+                new Range(MaxFrom, MaxTo)};
     }
 
     public Range[] getDifference(Range range) {
         if (from < range.from && to > range.to) {
             return new Range[]{new Range(from, range.from), new Range(range.to, to)};
         }
+
         if (from >= range.from && to <= range.to) {
             return new Range[]{};
         }
+
         if (from < range.to && from >= range.from) {
             return new Range[]{new Range(range.to, to)};
         }
+
         if (to > range.from && to <= range.to) {
             return new Range[]{new Range(from, range.from)};
         }
