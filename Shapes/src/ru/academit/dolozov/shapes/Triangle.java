@@ -27,11 +27,6 @@ public class Triangle implements Shape {
         return Math.max(y1, Math.max(y2, y3)) - Math.min(y1, Math.min(y2, y3));
     }
 
-    @Override
-    public double getArea() {
-        return 0.5 * getHeight() * getWidth();
-    }
-
     public double getSizeAB() {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
@@ -46,7 +41,12 @@ public class Triangle implements Shape {
 
     @Override
     public double getPerimeter() {
-        return this.getSizeAB() + this.getSizeBC() + this.getSizeAC(); 
+        return this.getSizeAB() + this.getSizeBC() + this.getSizeAC();
+    }
+
+    @Override
+    public double getArea() {
+        return 0.5 * getHeight() * getWidth();
     }
 
     @Override
