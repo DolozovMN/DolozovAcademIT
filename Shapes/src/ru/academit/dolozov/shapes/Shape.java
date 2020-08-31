@@ -1,7 +1,6 @@
 package ru.academit.dolozov.shapes;
 
 public interface Shape {
-    double zero = 0;
 
     double getWidth();
 
@@ -10,5 +9,6 @@ public interface Shape {
     double getArea();
 
     double getPerimeter();
+
 }
 

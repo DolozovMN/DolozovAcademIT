@@ -33,6 +33,11 @@ public class Circle implements Shape {
     }
 
     @Override
+    public int hashCode (){
+        return Double.hashCode(circleRadius);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;

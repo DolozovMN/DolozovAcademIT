@@ -33,6 +33,11 @@ public class Square implements Shape {
     }
 
     @Override
+    public int hashCode (){
+        return Double.hashCode(sizeLength);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;

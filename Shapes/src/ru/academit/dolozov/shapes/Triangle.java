@@ -32,6 +32,17 @@ public class Triangle implements Shape {
         return 0.5 * getHeight() * getWidth();
     }
 
+    public double getSizeAB() {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    public double getSizeBC() {
+        return  Math.sqrt(Math.pow(x3 - x2, 2) + Math.pow(y3 - y2, 2));
+    }
+
+    public double getSizeAC() {
+        return  Math.sqrt(Math.pow(x3 - x1, 2) + Math.pow(y3 - y1, 2));
+    }
 
     @Override
     public double getPerimeter() {
@@ -45,16 +56,26 @@ public class Triangle implements Shape {
     }
 
     @Override
+    public int hashCode (){
+        final int prime = 29;
+        int hash = 1;
+        hash = prime * hash + Double.hashCode(this.getSizeAB());
+        hash = prime * hash + Double.hashCode(this.getSizeBC());
+        hash = prime * hash + Double.hashCode(this.getSizeAC());
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != this.getClass() || this.hashCode() != o.hashCode()) {
             return false;
         }
 
         Triangle triangle = (Triangle) o;
-        return x1 == triangle.x1 && y1 == triangle.y1 && x2 == triangle.x2 && y2 == triangle.y2 && x3 == triangle.x3 && y3 == triangle.y3;
+        return this.getSizeAB() == triangle.getSizeAB() && this.getSizeBC() == triangle.getSizeBC() && this.getSizeAC() == triangle.getSizeAC();
     }
 }
