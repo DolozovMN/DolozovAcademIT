@@ -12,6 +12,10 @@ public class Vector {
         this.arrayVector = new double[n];
     }
 
+    public Vector(Vector vector) {
+        this.arrayVector = vector.arrayVector;
+    }
+
     public Vector(double[] array) {
         int n = array.length;
         this.arrayVector = new double[n];
@@ -37,7 +41,7 @@ public class Vector {
         }
     }
 
-    public int getSize (){
+    public int getSize() {
         return arrayVector.length;
     }
 

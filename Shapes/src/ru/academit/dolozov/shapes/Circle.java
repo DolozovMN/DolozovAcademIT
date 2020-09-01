@@ -33,7 +33,7 @@ public class Circle implements Shape {
     }
 
     @Override
-    public int hashCode (){
+    public int hashCode() {
         return Double.hashCode(circleRadius);
     }
 
