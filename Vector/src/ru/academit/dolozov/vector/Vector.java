@@ -106,7 +106,6 @@ public class Vector {
     }
 
     public double getVectorLength() {
-        int n = arrayVector.length;
         double sum = 0;
 
         for (double arrayElement : arrayVector) {
