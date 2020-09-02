@@ -115,26 +115,26 @@ public class Vector {
         return sum;
     }
 
-    public Vector getVectorSum(Vector vector) {
-        int n1 = arrayVector.length;
-        int n2 = vector.arrayVector.length;
+    public static Vector getVectorSum(Vector vector1, Vector vector2) {
+        int n1 = vector1.arrayVector.length;
+        int n2 = vector2.arrayVector.length;
         int nMax = Math.max(n1, n2);
         double[] arraySum = new double[nMax];
 
         if (n1 > n2) {
             for (int i = 0; i < nMax; i++) {
                 if (i < n2) {
-                    arraySum[i] = arrayVector[i] + vector.arrayVector[i];
+                    arraySum[i] = vector1.arrayVector[i] + vector2.arrayVector[i];
                 } else {
-                    arraySum[i] = arrayVector[i];
+                    arraySum[i] = vector1.arrayVector[i];
                 }
             }
         } else {
             for (int i = 0; i < nMax; i++) {
                 if (i < n1) {
-                    arraySum[i] = arrayVector[i] + vector.arrayVector[i];
+                    arraySum[i] = vector1.arrayVector[i] + vector2.arrayVector[i];
                 } else {
-                    arraySum[i] = vector.arrayVector[i];
+                    arraySum[i] = vector2.arrayVector[i];
                 }
             }
         }
@@ -142,26 +142,26 @@ public class Vector {
         return new Vector(arraySum);
     }
 
-    public Vector getVectorDifference(Vector vector) {
-        int n1 = arrayVector.length;
-        int n2 = vector.arrayVector.length;
+    public static Vector getVectorDifference(Vector vector1, Vector vector2) {
+        int n1 = vector1.arrayVector.length;
+        int n2 = vector2.arrayVector.length;
         int nMax = Math.max(n1, n2);
         double[] arrayDiff = new double[nMax];
 
         if (n1 > n2) {
             for (int i = 0; i < nMax; i++) {
                 if (i < n2) {
-                    arrayDiff[i] = arrayVector[i] - vector.arrayVector[i];
+                    arrayDiff[i] = vector1.arrayVector[i] - vector2.arrayVector[i];
                 } else {
-                    arrayDiff[i] = arrayVector[i];
+                    arrayDiff[i] = vector1.arrayVector[i];
                 }
             }
         } else {
             for (int i = 0; i < nMax; i++) {
                 if (i < n1) {
-                    arrayDiff[i] = arrayVector[i] - vector.arrayVector[i];
+                    arrayDiff[i] = vector1.arrayVector[i] - vector2.arrayVector[i];
                 } else {
-                    arrayDiff[i] = 0 - vector.arrayVector[i];
+                    arrayDiff[i] = 0 - vector2.arrayVector[i];
                 }
             }
         }
@@ -169,9 +169,9 @@ public class Vector {
         return new Vector(arrayDiff);
     }
 
-    public Vector getVectorComposition(Vector vector) {
-        int n1 = arrayVector.length;
-        int n2 = vector.arrayVector.length;
+    public static Vector getVectorComposition(Vector vector1, Vector vector2) {
+        int n1 = vector1.arrayVector.length;
+        int n2 = vector2.arrayVector.length;
         int nMax = Math.max(n1, n2);
         double[] arrayComposition = new double[nMax];
 
@@ -180,13 +180,13 @@ public class Vector {
             double factor2;
 
             if (i < n1) {
-                factor1 = arrayVector[i];
+                factor1 = vector1.arrayVector[i];
             } else {
                 factor1 = 0;
             }
 
             if (i < n2) {
-                factor2 = vector.arrayVector[i];
+                factor2 = vector2.arrayVector[i];
             } else {
                 factor2 = 0;
             }

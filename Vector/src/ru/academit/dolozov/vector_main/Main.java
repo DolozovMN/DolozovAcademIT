@@ -27,14 +27,14 @@ public class Main {
 
         System.out.println("Длина вектора 6: " + vector6.getVectorLength());
 
-        Vector vectorSum = vector2.getVectorSum(vector6);
+        Vector vectorSum = Vector.getVectorSum(vector2, vector6);
         System.out.println("Суммарный вектор 2 и 6 (Новый): " + vectorSum.toString());
 
-        Vector vectorDiff = vector2.getVectorDifference(vector6);
-        System.out.println("Вектор разности (Новый): " + vectorDiff.toString());
+        Vector vectorDiff = Vector.getVectorDifference(vector2, vector6);
+        System.out.println("Вектор разности 2-6 (Новый): " + vectorDiff.toString());
 
-        Vector vectorComposition = vector2.getVectorComposition(vector6);
-        System.out.println("Вектор произведения (Новый): " + vectorComposition.toString());
+        Vector vectorComposition = Vector.getVectorComposition(vector2, vector6);
+        System.out.println("Вектор произведения 2-6 (Новый): " + vectorComposition.toString());
 
         vector4.expandVector();
         System.out.println("Разворот вектора 4: " + vector4.toString());
