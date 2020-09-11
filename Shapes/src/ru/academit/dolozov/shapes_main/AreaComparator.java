@@ -1,4 +1,6 @@
-package ru.academit.dolozov.shapes;
+package ru.academit.dolozov.shapes_main;
+
+import ru.academit.dolozov.shapes.Shape;
 
 import java.util.Comparator;
 

@@ -1,40 +1,52 @@
 package ru.academit.dolozov.shapes;
 
 public class Circle implements Shape {
-    private double circleRadius;
+    private double radius;
 
-    public Circle(double circleRadius) {
-        this.circleRadius = circleRadius;
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
     }
 
     @Override
     public double getWidth() {
-        return 2 * circleRadius;
+        return 2 * radius;
     }
 
     @Override
     public double getHeight() {
-        return 2 * circleRadius;
+        return 2 * radius;
     }
 
     @Override
     public double getArea() {
-        return Math.PI * circleRadius * circleRadius;
+        return Math.PI * radius * radius;
     }
 
     @Override
     public double getPerimeter() {
-        return 2 * Math.PI * circleRadius;
+        return 2 * Math.PI * radius;
     }
 
     @Override
     public String toString() {
-        return "Окружность высотой: " + 2 * circleRadius + " шириной: " + 2 * circleRadius;
+        return "Окружность высотой: " + getHeight() + " шириной: " + getWidth() + " площадью: " + String.format("%.2f", getArea())
+                + " периметром: " + String.format("%.2f", getPerimeter());
     }
 
     @Override
     public int hashCode() {
-        return Double.hashCode(circleRadius);
+        final int prime = 29;
+        int hash = 1;
+        hash = prime * hash + Double.hashCode(radius);
+        return hash;
     }
 
     @Override
@@ -43,11 +55,12 @@ public class Circle implements Shape {
             return true;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
 
         Circle circle = (Circle) o;
-        return circleRadius == circle.circleRadius;
+
+        return radius == circle.radius;
     }
 }

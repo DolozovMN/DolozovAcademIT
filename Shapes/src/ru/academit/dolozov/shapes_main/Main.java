@@ -15,13 +15,12 @@ public class Main {
         Square square2 = new Square(20);
 
         Shape[] arrayShapes = {square1, triangle1, rectangle1, circle1, circle2, rectangle2, square2};
-        int shapesCount = arrayShapes.length;
 
-        /*  - Код для расчета массива площадей и периметров фигур для проверки
-        double[] arrayAreas = new double[shapesCount];
-        double[] arrayPerimeter = new double[shapesCount];
+        /*- Код для расчета массива площадей и периметров фигур для проверки
+        double[] arrayAreas = new double[arrayShapes.length];
+        double[] arrayPerimeter = new double[arrayShapes.length];
 
-        for (int i = 0; i < shapesCount; i++) {
+        for (int i = 0; i < arrayShapes.length; i++) {
             arrayAreas[i] = arrayShapes[i].getArea();
             arrayPerimeter[i] = arrayShapes[i].getPerimeter();
         }
@@ -32,10 +31,10 @@ public class Main {
 
         AreaComparator areaComparator = new AreaComparator();
         Arrays.sort(arrayShapes, areaComparator);
-        System.out.println("Фигура с наибольшей площадью: " + arrayShapes[shapesCount - 1].toString());
+        System.out.println("Фигура с наибольшей площадью: " + arrayShapes[arrayShapes.length - 1]);
 
         PerimeterComparator perimeterComparator = new PerimeterComparator();
         Arrays.sort(arrayShapes, perimeterComparator);
-        System.out.println("Фигура со вторым по величине периметром: " + arrayShapes[shapesCount - 2].toString());
+        System.out.println("Фигура со вторым по величине периметром: " + arrayShapes[arrayShapes.length - 2].toString());
     }
 }
