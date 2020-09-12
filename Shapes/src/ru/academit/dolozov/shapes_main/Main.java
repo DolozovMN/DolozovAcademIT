@@ -35,6 +35,6 @@ public class Main {
 
         PerimeterComparator perimeterComparator = new PerimeterComparator();
         Arrays.sort(arrayShapes, perimeterComparator);
-        System.out.println("Фигура со вторым по величине периметром: " + arrayShapes[arrayShapes.length - 2].toString());
+        System.out.println("Фигура со вторым по величине периметром: " + arrayShapes[arrayShapes.length - 2]);
     }
 }
