@@ -21,50 +21,50 @@ public class Triangle implements Shape {
         return x1;
     }
 
-    public double getX2() {
-        return x2;
-    }
-
-    public double getX3() {
-        return x3;
-    }
-
-    public double getY1() {
-        return y1;
-    }
-
-    public double getY2() {
-        return y2;
-    }
-
-    public double getY3() {
-        return y3;
-    }
-
     public void setX1(double x1) {
         this.x1 = x1;
+    }
+
+    public double getX2() {
+        return x2;
     }
 
     public void setX2(double x2) {
         this.x2 = x2;
     }
 
+    public double getX3() {
+        return x3;
+    }
+
     public void setX3(double x3) {
         this.x3 = x3;
+    }
+
+
+    public double getY1() {
+        return y1;
     }
 
     public void setY1(double y1) {
         this.y1 = y1;
     }
 
+    public double getY2() {
+        return y2;
+    }
+
     public void setY2(double y2) {
         this.y2 = y2;
+    }
+
+    public double getY3() {
+        return y3;
     }
 
     public void setY3(double y3) {
         this.y3 = y3;
     }
-
 
     @Override
     public double getWidth() {
@@ -76,25 +76,25 @@ public class Triangle implements Shape {
         return Math.max(y1, Math.max(y2, y3)) - Math.min(y1, Math.min(y2, y3));
     }
 
-    public double getSideLength(double x, double x0, double y, double y0) {
-        return Math.sqrt(Math.pow(x0 - x, 2) + Math.pow(y0 - y, 2));
+    private static double getSideLength(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     @Override
     public double getPerimeter() {
-        return getSideLength(x1, x2, y1, y2) + getSideLength(x2, x3, y2, y3) + getSideLength(x1, x3, y1, y3);
+        return getSideLength(x1, y1, x2, y2) + getSideLength(x2, y2, x3, y3) + getSideLength(x1, y1, x3, y3);
     }
 
     @Override
     public double getArea() {
-        return Math.sqrt(getPerimeter() * (getPerimeter() - getSideLength(x1, x2, y1, y2)) * (getPerimeter() - getSideLength(x2, x3, y2, y3)) +
-                (getPerimeter() - getSideLength(x1, x3, y1, y3)));
+        double trianglePerimeter = getPerimeter();
+        return Math.sqrt(trianglePerimeter * (trianglePerimeter - getSideLength(x1, y1, x2, y2)) * (trianglePerimeter - getSideLength(x2, y2, x3, y3)) +
+                (trianglePerimeter - getSideLength(x1, y1, x3, y3)));
     }
 
     @Override
     public String toString() {
-        return "Триугольник высотой: " + getHeight() + " шириной: " + getWidth() + " площадью: " + String.format("%.2f", getArea()) +
-                " периметром: " + String.format("%.2f", getPerimeter());
+        return String.format("Триугольник высотой: %.2f, шириной: %.2f, площадью: %.2f, периметром: %.2f ", getHeight(), getWidth(), getArea(), getPerimeter());
     }
 
     @Override

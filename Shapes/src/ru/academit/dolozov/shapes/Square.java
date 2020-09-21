@@ -17,33 +17,35 @@ public class Square implements Shape {
 
     @Override
     public double getWidth() {
-        return this.side;
+        return side;
     }
 
     @Override
     public double getHeight() {
-        return this.side;
+        return side;
     }
 
     @Override
     public double getArea() {
-        return this.side * this.side;
+        return side * side;
     }
 
     @Override
     public double getPerimeter() {
-        return 4 * this.side;
+        return 4 * side;
     }
 
     @Override
     public String toString() {
-        return "Квадрат, высотой: " + side + " шириной: " + side + " площадью: " + String.format("%.2f", getArea()) +
-                " периметром: " + String.format("%.2f", getPerimeter());
+        return String.format("Квадрат, высотой: %.2f, шириной: %.2f, площадью: %.2f, периметром: %.2f", side, side, getArea(), getPerimeter());
     }
 
     @Override
     public int hashCode() {
-        return Double.hashCode(side);
+        final int prime = 29;
+        int hash = 1;
+        hash = prime * hash + Double.hashCode(side);
+        return hash;
     }
 
     @Override

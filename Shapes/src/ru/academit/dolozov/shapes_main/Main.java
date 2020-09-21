@@ -14,7 +14,7 @@ public class Main {
         Rectangle rectangle2 = new Rectangle(5, 25);
         Square square2 = new Square(20);
 
-        Shape[] arrayShapes = {square1, triangle1, rectangle1, circle1, circle2, rectangle2, square2};
+        Shape[] shapesArray = {square1, triangle1, rectangle1, circle1, circle2, rectangle2, square2};
 
         /*- Код для расчета массива площадей и периметров фигур для проверки
         double[] arrayAreas = new double[arrayShapes.length];
@@ -29,12 +29,10 @@ public class Main {
         System.out.println("Периметры фигур: " + Arrays.toString(arrayPerimeter));
          */
 
-        AreaComparator areaComparator = new AreaComparator();
-        Arrays.sort(arrayShapes, areaComparator);
-        System.out.println("Фигура с наибольшей площадью: " + arrayShapes[arrayShapes.length - 1]);
+        Arrays.sort(shapesArray, new AreaComparator());
+        System.out.println("Фигура с наибольшей площадью: " + shapesArray[shapesArray.length - 1]);
 
-        PerimeterComparator perimeterComparator = new PerimeterComparator();
-        Arrays.sort(arrayShapes, perimeterComparator);
-        System.out.println("Фигура со вторым по величине периметром: " + arrayShapes[arrayShapes.length - 2]);
+        Arrays.sort(shapesArray, new PerimeterComparator());
+        System.out.println("Фигура со вторым по величине периметром: " + shapesArray[shapesArray.length - 2]);
     }
 }

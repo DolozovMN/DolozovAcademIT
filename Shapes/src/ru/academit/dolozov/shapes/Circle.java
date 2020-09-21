@@ -37,8 +37,7 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return "Окружность высотой: " + getHeight() + " шириной: " + getWidth() + " площадью: " + String.format("%.2f", getArea())
-                + " периметром: " + String.format("%.2f", getPerimeter());
+        return String.format("Окружность высотой: %.2f, шириной: %.2f, площадью: %.2f, периметром: %.2f ", getHeight(), getWidth(), getArea(), getPerimeter());
     }
 
     @Override
