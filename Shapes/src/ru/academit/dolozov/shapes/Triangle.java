@@ -41,7 +41,6 @@ public class Triangle implements Shape {
         this.x3 = x3;
     }
 
-
     public double getY1() {
         return y1;
     }
@@ -87,14 +86,14 @@ public class Triangle implements Shape {
 
     @Override
     public double getArea() {
-        double trianglePerimeter = getPerimeter();
-        return Math.sqrt(trianglePerimeter * (trianglePerimeter - getSideLength(x1, y1, x2, y2)) * (trianglePerimeter - getSideLength(x2, y2, x3, y3)) +
-                (trianglePerimeter - getSideLength(x1, y1, x3, y3)));
+        double halfPerimeter = getPerimeter()/2;
+        return Math.sqrt(halfPerimeter * (halfPerimeter - getSideLength(x1, y1, x2, y2)) * (halfPerimeter - getSideLength(x2, y2, x3, y3)) +
+                (halfPerimeter - getSideLength(x1, y1, x3, y3)));
     }
 
     @Override
     public String toString() {
-        return String.format("Триугольник высотой: %.2f, шириной: %.2f, площадью: %.2f, периметром: %.2f ", getHeight(), getWidth(), getArea(), getPerimeter());
+        return String.format("Триугольник высотой: %.2f, шириной: %.2f, площадью: %.2f, периметром: %.2f", getHeight(), getWidth(), getArea(), getPerimeter());
     }
 
     @Override
